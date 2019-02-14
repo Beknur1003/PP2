@@ -4,28 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Xml.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Farik
 {
     class Program
     {
-        static void print(DirectoryInfo d, int cursor)
+        static void print(DirectoryInfo d, int cursor)                //новый метод с новыми переменными directoryInfo d и cursor\\
         {
-            Console.Clear();
-            FileSystemInfo[] fsis = d.GetFileSystemInfos();
-            for (int i = 0; i < fsis.Length; i++)
+            Console.Clear();                                          //каждый раз консиль будет очищаться\\
+            FileSystemInfo[] fsis = d.GetFileSystemInfos();          //создаем новый массив fsis и присваиваем туда из d, так как в FileSystemInfo уже есть directoryInfo и fileInfo\\
+            for (int i = 0; i < fsis.Length; i++)                   //пробегаемся от 0 до длины массива fsis\\
             {
-                if (fsis[i].GetType() == typeof(FileInfo))
+                if (fsis[i].GetType() == typeof(FileInfo))           //проверяем на тип файла, папка или файл\\
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Cyan;      //цвет букв\\
                 }
-                if (fsis[i].GetType() == typeof(DirectoryInfo))
+                if (fsis[i].GetType() == typeof(DirectoryInfo))       //проверяем на тип файла, проверяем директорий или нет\\
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Green;     //цвет букв\\
                 }
-                if (i == cursor)
+                if (i == cursor)                                      //если наш курсор находится на индексе, то буквы серые. Если не так, то белые\\
                 {
                     Console.ForegroundColor = ConsoleColor.Gray;
                 }
@@ -33,66 +31,66 @@ namespace Farik
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                Console.WriteLine(fsis[i].Name);
+                Console.WriteLine(fsis[i].Name);                      //выводим на консоль файл или папку с тем индексом\\
             }
         }
 
         static void Main(string[] args)
         {
-            DirectoryInfo d = new DirectoryInfo(@"C:\Users\Asus\Desktop");
-            int cursor = 0;
-            print(d, cursor);
-            int n = d.GetFileSystemInfos().Length;
+            DirectoryInfo d = new DirectoryInfo(@"C:\Users\Asus\Desktop");      //создаем новый директорий d и считываем весь десктоп                   \\
+            int cursor = 0;                                                    //по началу наш курсор находится сверху на 0 месте                        \\
+            print(d, cursor);                                                 //используем метод сверху для подсветки выбранного файла или папки          \\
+            int n = d.GetFileSystemInfos().Length;                           //создаем новую переменную равную длине папки или файла, это нужно для курсора\\
 
-            while (true)
+            while (true)                                                    //созадем бесконечный цикл\\
             {
-                ConsoleKeyInfo keyInfo = Console.ReadKey();
-                if (keyInfo.Key == ConsoleKey.UpArrow)
+                ConsoleKeyInfo keyInfo = Console.ReadKey();                 //считываем кнопки, чтобы делать действия\\
+                if (keyInfo.Key == ConsoleKey.UpArrow)                     //если стрелка вверх то курсор--           \\
                 {
                     cursor--;
-                    if (cursor == -1)
+                    if (cursor == -1)                                     //если курсор вышел за рамки, то он будет в самом низу консоли\\
                     {
                         cursor = n - 1;
                     }
                 }
-                if (keyInfo.Key == ConsoleKey.DownArrow)
+                if (keyInfo.Key == ConsoleKey.DownArrow)                   //если стрелка вниз, то курсор++\\
                 {
                     cursor++;
-                    if (cursor == n)
+                    if (cursor == n)                                       //если в вышли за рамки снизу, то курсор будет сверху\\
                     {
-                        cursor = 0;
+                        cursor = 0; 
                     }
                 }
-                if (keyInfo.Key == ConsoleKey.Enter)
+                if (keyInfo.Key == ConsoleKey.Enter)                        //если нажали интер, то идут условия на проверку типа файла\\
                 {
-                    if (d.GetFileSystemInfos()[cursor].GetType() == typeof(FileInfo))
+                    if (d.GetFileSystemInfos()[cursor].GetType() == typeof(FileInfo))       //если это файл, то заходим в файл\\
                     {
                         Console.Clear();
                         StreamReader sr = new StreamReader(d.GetFileSystemInfos()[cursor].FullName);
                         Console.WriteLine(sr.ReadToEnd());
                         Console.ReadKey();
                     }
-                    if (d.GetFileSystemInfos()[cursor].GetType() == typeof(DirectoryInfo))
+                    if (d.GetFileSystemInfos()[cursor].GetType() == typeof(DirectoryInfo))          //если это директория, то заходим в папку и тоже самое как изначально\\
                     {
                         Console.Clear();
                         d = new DirectoryInfo(d.GetFileSystemInfos()[cursor].FullName);
-                        cursor = 0;
+                        cursor = 0;                                                                 //курсор как в начале находится в самом вверху\\
                         n = d.GetFileSystemInfos().Length;
                     }
                 }
-                if (keyInfo.Key == ConsoleKey.Escape)
+                if (keyInfo.Key == ConsoleKey.Escape)                       //если нажали на Escape, то проверяем есть ли родители у файла\\
                 {
                     if (d.Parent != null)
                     {
                         d = d.Parent;
                         n = d.GetFileSystemInfos().Length;
-                        cursor = 0;
+                        cursor = 0;                                         //если есть, то курсор оказывается в са
                     }
                     else
                     {
-                        break;
+                        break;                                              //если мы вышли дальше C, то программа выходит\\
                     }
-                    if (keyInfo.Key == ConsoleKey.D)
+                    if (keyInfo.Key == ConsoleKey.D)                        //удаляем файл\\
                     {
                         if (d.GetFileSystemInfos()[cursor].GetType() == typeof(DirectoryInfo))
                         {
