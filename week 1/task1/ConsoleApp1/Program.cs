@@ -11,7 +11,7 @@ namespace ConsoleApp15
     {
         static bool isPrime(int n)
         {
-            if (n == 1 || n == 0) return false;
+            if (n == 1 || n == 0) return false;        //Нахождение прайм числа
             for (int i = 2; i < n; i++)
             {
                 if (n % i == 0) return false;
@@ -21,27 +21,24 @@ namespace ConsoleApp15
 
         static void Main(string[] args)
         {
-            string s = Console.ReadLine();
-            int n = int.Parse(s);
-            string k = Console.ReadLine();
-            string[] arr = k.Split();
-            int cnt = 0;
+            string s = Console.ReadLine();                //читаем первую строку                            \\
+            int n = int.Parse(s);                        //конвертируем со стринга в интеджер                \\
+            string k = Console.ReadLine();              //читаем вторую строку                                \\
+            string[] arr = k.Split();                  //записываем в новый массив удалив пробелы между цифрами\\
+            int cnt = 0;                              //начальное значение прайм чисел                          \\
 
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)         //создаем форик\\
             {
-                int num = int.Parse(arr[i]);
-                if (isPrime(num)) cnt++;
+                if (isPrime(int.Parse(arr[i]))) cnt++;  //проверяем числа на прайм и если прайм, то cnt+1\\
             }
-            Console.WriteLine(cnt);
+            Console.WriteLine(cnt);                     //записываем количество прайм чисел\\
 
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)         //пробегаемся от 0 до длины массива\\
             {
-                int num = int.Parse(arr[i]);
-                if (isPrime(num))
+                if (isPrime(int.Parse(arr[i])))         //проверяем число на прайм\\
                 {
-                    Console.Write(arr[i]);
-                    Console.Write("");
-                    Console.ReadKey();
+                    Console.Write(arr[i]);              //записываем прайм число   \\
+                    Console.Write(" ");                //ставлю пробел между числами\\
                 }
             }
         }

@@ -5,25 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ConsoleApp15                              
+namespace ConsoleApp15
 {
     class Program
     {
-        static int[] arrMaker(string[] arr)         
+        static int[] arrMaker(string[] arr)
         {
             int cnt = -1;                                //начальное количество равно 0               \\
             int[] array = new int[arr.Length * 2];     //создаем массив в два раза больше изначального\\
             for (int i = 0; i < arr.Length; i++)      //пробегаемся с 0 до длины первого массива       \\
-            {   
-                cnt++;                                 
+            {
+                cnt++;
                 array[cnt] = int.Parse(arr[i]);        //array[0] = 1 \\                    
-                cnt++;      
+                cnt++;
                 array[cnt] = int.Parse(arr[i]);        //array[1] = 1 \\                          
-            }                                                                                    
-            return array;                                                                         
-        }                                                                                          
-        static void Main(string[] args)                                                             
-        {                                                                                           
+            }
+            return array;
+        }
+        static void Main(string[] args)
+        {
             string s = Console.ReadLine();              //читаем первую строку                          \\
             int n = int.Parse(s);                      //переводим из стринга в интеджер                 \\
             string k = Console.ReadLine();            //читаем вторую строку                              \\
