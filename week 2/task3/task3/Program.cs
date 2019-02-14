@@ -34,7 +34,7 @@ namespace example
             {
                 whitespace(level);
                 Console.WriteLine(dinfo.Name);
-                print(dinfo.FullName, level + 1);
+                print(dinfo.FullName, level + 2);
             }
 
         }
@@ -42,6 +42,7 @@ namespace example
         public static void Main(String[] args)
         {
             print(@"C:\Users\Asus\Desktop\davai", 0);
+            Console.ReadKey(true);
         }
     }
 }

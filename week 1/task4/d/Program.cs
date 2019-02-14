@@ -11,16 +11,16 @@ namespace ConsoleApp15
     {
         static void Main(string[] args)
         {
-            string s = Console.ReadLine();
-            int n = int.Parse(s);
+            string s = Console.ReadLine();          //читаем первую строку         \\
+            int n = int.Parse(s);                  //переводим из стринга в интеджер\\
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; i++)            //создаем двойной форик от 0 до n\\
             {
-                for (int j = 0; j <= i; j++)
+                for (int j = 0; j <= i; j++)       //пробегаемся от 0 до того где j <= i\\
                 {
-                    Console.Write("[*]");
+                    Console.Write("[*]");           //вписываем [*]
                 }
-                Console.WriteLine();
+                Console.WriteLine();                //переходим на нижнюю строку\\
             }
         }
     }

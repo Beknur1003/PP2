@@ -31,7 +31,7 @@ namespace Farik
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 Console.WriteLine(fsis[i].Name);
             }
@@ -96,12 +96,12 @@ namespace Farik
                     {
                         if (d.GetFileSystemInfos()[cursor].GetType() == typeof(DirectoryInfo))
                         {
-                            Directory.Delete(d.GetFileSystemInfos()[cursor].FullName);
+                            Directory.Delete(d.GetFileSystemInfos()[cursor].FullName, true);
                             cursor--;
                         }
                         if (d.GetFileSystemInfos()[cursor].GetType() == typeof(FileInfo))
                         {
-                            Directory.Delete(d.GetFileSystemInfos()[cursor].FullName);
+                            Directory.Delete(d.GetFileSystemInfos()[cursor].FullName, true);
                             cursor--;
                         }
                     }
