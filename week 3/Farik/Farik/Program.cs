@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+
 namespace Farik
 {
     class Program
@@ -35,7 +36,7 @@ namespace Farik
             }
         }
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             DirectoryInfo d = new DirectoryInfo(@"C:\Users\Asus\Desktop");      //создаем новый директорий d и считываем весь десктоп                   \\
             int cursor = 0;                                                    //по началу наш курсор находится сверху на 0 месте                        \\
